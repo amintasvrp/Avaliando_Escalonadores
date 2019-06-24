@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     for(k = 0; k < n; k++){
         id = fork();
         if(id == 0){ // filho
-
+        
             int count = 0;
             int i = 0;
             for(i = 1; i <= 999999999;i++){
