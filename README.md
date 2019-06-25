@@ -1,2 +1,2 @@
 # Avaliando_Escalonadores
-Avaliação de Escalonadores com projeto da disciplina de Projeto de Sistemas Operacionais
+Este projeto consiste na avaliação de escalonadores dos laboratórios 3 da disciplina de Projeto de Sistemas Operacionais.
