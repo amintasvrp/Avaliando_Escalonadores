@@ -1,7 +1,0 @@
-Criaremos um escalonador com a seguinte política:
-
-O processo de escalonamento será baseado em prioridades. Todo processo começa com prioridade 15. Essa prioridade pode ser alterada, conforme foi feito no lab1.
-Teremos uma estrutura de dados que guardará os processos. Assim, um processo com prioridade 5 tende a ter maior chance de ganhar a CPU do que um processo de prioridade 10, por exemplo. A cada 5 ticks de relógio (esse número pode ser ajustado a medida que a formos implementando) a prioridade dos processos será aumentada(mais perto de 0), para que possamos evitar starvation. Por outro lado, a cada 5 vezes que um processo perder a cpu ele terá sua prioridade diminuída por um valor que varia de acordo com a forma que ele perdeu a cpu e de acordo com a sua prioridade inicial (por exemplo, um processo que tinha prioridade 31 inicialmente, vai ter um valor maior adicionado nessa etapa do que um processo que tinha prioridade 10). Se foi por tick de relógio a prioridade dimunuirá menos do que se ele foi bloqueado por tentar fazer I/O, por exemplo.
-
-MUDANÇA FEITA:
-Não diferenciamos mais se o processo perdeu a cpu por tick de clock ou por ter sido bloqueado. Assim, a cada 5 vezes que isso acontecer ele terá sua prioridade diminuída de acordo com sua prioridade inicial.
