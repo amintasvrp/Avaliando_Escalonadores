@@ -1,0 +1,2 @@
+## Proposta para implementação do laboratorio 3: ##
+Modelo probabilístico de escalonador que segue a proposta de tickets, no qual um processo com prioridade x, irá receber 32-x tickets, e no escalonador, será varrida a tabela de processos buscando o numero total de tickets, depois será sorteado um numero que represente o ticket, e após isso o processo que possuir o ticket de número vencedor irá ganhar a CPU.
