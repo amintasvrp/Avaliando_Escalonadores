@@ -15,6 +15,9 @@ struct {
 static struct proc *initproc;
 
 int nextpid = 1;
+int runTimeCpu = 0;
+int blockeds = 0;
+int notBlockeds = 0;
 extern void forkret(void);
 extern void trapret(void);
 
@@ -352,6 +355,7 @@ void
 scheduler(void)
 {
   struct proc *p;
+  struct proc *pblock;
   struct proc *selectedProc;
   struct cpu *c = mycpu();
   c->proc = 0;
@@ -391,6 +395,18 @@ scheduler(void)
       c->proc = selectedProc;
       //cprintf("---------------------------------------------------------- \n");
       //cprintf("%s \t %d \t %d \t \t %d \t \t SCHEDULED \n", selectedProc->name, selectedProc->pid, selectedProc->priority, selectedProc->cputimes);
+      for(pblock = ptable.proc; pblock < &ptable.proc[NPROC]; pblock++){
+        if(pblock->state == SLEEPING){
+          blockeds++;
+        } else {
+          if(pblock->state == RUNNING || pblock->state == RUNNABLE) {
+            notBlockeds++;
+          }
+        }
+      }
+      runTimeCpu++;
+      cprintf("\n Escalonador Rodou: %d vezes // Bloqueados: %d  // Nao Bloqueados: %d \n", runTimeCpu, blockeds, notBlockeds);
+      
       switchuvm(selectedProc);
       selectedProc->state = RUNNING;
       selectedProc->cputimes = selectedProc->cputimes + 1; // Incrementado quando ganha a CPU

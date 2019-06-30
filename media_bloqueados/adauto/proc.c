@@ -386,10 +386,9 @@ scheduler(void)
         }
       }
       runTimeCpu++;
+      cprintf("\n Escalonador Rodou: %d vezes // Bloqueados: %d  // Nao Bloqueados: %d \n", runTimeCpu, blockeds, notBlockeds);
       swtch(&(c->scheduler), p->context);
       switchkvm();
-
-      cprintf("\n Escalonador Rodou: %d vezes // Bloqueados: %d  // Nao Bloqueados: %d \n", runTimeCpu, blockeds, notBlockeds);
       // Process is done running for now.
       // It should have changed its p->state before coming back.
       c->proc = 0;
