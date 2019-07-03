@@ -348,6 +348,12 @@ int selectProcessClass(void){
 //  - swtch to start running that process
 //  - eventually that process transfers control
 //      via swtch back to the scheduler.
+
+int firstClass = 0;
+int secondClass = 0;
+int thirdClass = 0;
+int fourthClass = 0;
+
 void
 scheduler(void)
 {
@@ -369,28 +375,40 @@ scheduler(void)
       if(selectedClass == 0) {
         if(p->priority >= 0 && p->priority <= 7) {
           selectedProc = p;
+          if(p->pid > 2){
+            firstClass++;
+          }
         }  else {
           continue;
         }
       } else if(selectedClass == 1 ){
           if(p->priority >= 8 && p->priority <= 15) {
             selectedProc = p;
+            secondClass++;
           } else {
             continue;
           }
       } else {
           if(p->priority >= 16 && p->priority <= 31) {
             selectedProc = p;
+            if(p->pid > 3){
+              if(p->priority <= 23){
+                thirdClass++;
+              }else{
+                fourthClass++;
+              }
+              
+            }            
           } else {
             continue;
           }
       }
-      // Switch to chosen process.  It is the process's job
-      // to release ptable.lock and then reacquire it
-      // before jumping back to us.
+      // // Switch to chosen process.  It is the process's job
+      // // to release ptable.lock and then reacquire it
+      // // before jumping back to us.
       c->proc = selectedProc;
-      //cprintf("---------------------------------------------------------- \n");
-      //cprintf("%s \t %d \t %d \t \t %d \t \t SCHEDULED \n", selectedProc->name, selectedProc->pid, selectedProc->priority, selectedProc->cputimes);
+      // //cprintf("%s \t %d \t %d \t \t %d \t \t SCHEDULED \n", selectedProc->name, selectedProc->pid, selectedProc->priority, selectedProc->cputimes);
+      cprintf("Classe 1: %d -- Classe 2: %d -- Classe 3: %d -- Classe 4: %d\n", firstClass, secondClass, thirdClass, fourthClass);
       switchuvm(selectedProc);
       selectedProc->state = RUNNING;
       selectedProc->cputimes = selectedProc->cputimes + 1; // Incrementado quando ganha a CPU

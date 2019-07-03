@@ -23,10 +23,7 @@ int main(int argc, char *argv[]) {
                 for(i = 1; i <= 999999999;i++){
                     count = (count * 238741225925952989 + 9823444724) % 3768232368993;
                 }
-
-                int usage = getusage(k + 4);
-                printf(3, "%d - %d\n", k+4, usage);
-
+                
                 exit();
             } else { // pai
                 setpriority(id, k);
